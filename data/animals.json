@@ -171,6 +171,16 @@
         "hungry"
       ],
       "id": "17"
+    },
+    {
+      "name": "marcus",
+      "species": "Frog",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "zany",
+        "goofy"
+      ],
+      "id": "18"
     }
   ]
 }

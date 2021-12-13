@@ -9,6 +9,9 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON Data
 app.use(express.json());
+// middleware that provides path to a location in out application.
+// instructs serve to make these files static resources
+app.use(express.static("public"));
 
 const { animals } = require("./data/animals");
 
@@ -101,6 +104,22 @@ app.get("/api/animals/:id", (req, res) => {
 	} else {
 		res.send(404);
 	}
+});
+
+// route with job of returning index, animals, and zookeepers htmls
+// hence why res.sendFile is used
+app.get("/", (req, res) => {
+	res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+app.get("/animals", (req, res) => {
+	res.sendFile(path.join(__dirname, "./public/animals.html"));
+});
+app.get("/zookeepers", (req, res) => {
+	res.sendFile(path.join(__dirname, "./public/zookeepers.html"));
+});
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 app.post("/api/animals", (req, res) => {
